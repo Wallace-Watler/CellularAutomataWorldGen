@@ -58,12 +58,15 @@ public class Main extends Canvas implements Runnable {
 
     private void init() {
         createBufferStrategy(3);
-        Chunk.randomlyPopulate(0.5);
 
         addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_T) Chunk.tick();
+                int i = e.getKeyCode();
+                if(i == KeyEvent.VK_A) World.instance.movePlayer(-1, 0);
+                else if(i == KeyEvent.VK_D) World.instance.movePlayer(1, 0);
+                else if(i == KeyEvent.VK_W) World.instance.movePlayer(0, -1);
+                else if(i == KeyEvent.VK_S) World.instance.movePlayer(0, 1);
             }
 
             @Override
@@ -97,7 +100,7 @@ public class Main extends Canvas implements Runnable {
         g.setColor(BACKGROUND_COLOR);
         g.fillRect(0, 0, WIDTH, WIDTH);
 
-        Chunk.render(g);
+        World.instance.render(g);
 
         g.dispose();
         bs.show();
