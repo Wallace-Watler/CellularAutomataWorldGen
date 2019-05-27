@@ -63,10 +63,10 @@ public class Main extends Canvas implements Runnable {
             @Override
             public void keyPressed(KeyEvent e) {
                 int i = e.getKeyCode();
-                if(i == KeyEvent.VK_A) World.instance.movePlayer(-1, 0);
-                else if(i == KeyEvent.VK_D) World.instance.movePlayer(1, 0);
-                else if(i == KeyEvent.VK_W) World.instance.movePlayer(0, -1);
-                else if(i == KeyEvent.VK_S) World.instance.movePlayer(0, 1);
+                if(i == KeyEvent.VK_A || i == KeyEvent.VK_LEFT) World.instance.movePlayer(-1, 0);
+                else if(i == KeyEvent.VK_D || i == KeyEvent.VK_RIGHT) World.instance.movePlayer(1, 0);
+                else if(i == KeyEvent.VK_W || i == KeyEvent.VK_UP) World.instance.movePlayer(0, -1);
+                else if(i == KeyEvent.VK_S || i == KeyEvent.VK_DOWN) World.instance.movePlayer(0, 1);
             }
 
             @Override
