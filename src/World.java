@@ -2,14 +2,16 @@ import java.awt.*;
 
 public final class World {
 
-    private final int SEED = 0;
-    private final int NUM_CHUNKS = 8;
+    //----Testing Parameters----//
+    private final int WORLD_SEED = 1;
     private final double FILL_AMOUNT = 0.5;
-    private final int NUM_ITERATIONS = 2;
+    private final int NUM_ITERATIONS = 3;
+    //--------------------------//
 
+    private final int NUM_CHUNKS = 8;
     private final int CHUNK_RENDER_SIZE = Main.WIDTH / NUM_CHUNKS;
     private Chunk[][] chunks = new Chunk[NUM_CHUNKS][NUM_CHUNKS];
-    private int playerX = 4, playerY = 4;
+    private int playerX = 0, playerY = 0;
 
     public static final World instance = new World();
 
@@ -65,7 +67,8 @@ public final class World {
 
         private void load() {
             if(!loaded) {
-                int[][] resultCA = CellularAutomata.performCA(SEED, x, y, NUM_ITERATIONS, chunkPRNG -> chunkPRNG.nextDouble() < FILL_AMOUNT ? 1 : 0, CellularAutomata.B5678S45678);
+                int[][] resultCA = CellularAutomata.performCA(WORLD_SEED, x, y, NUM_ITERATIONS, chunkPRNG -> chunkPRNG.nextDouble() < FILL_AMOUNT ? 1 : 0, CellularAutomata.B5678S45678);
+
                 for(int j = 0; j < 16; j++) {
                     for(int i = 0; i < 16; i++) {
                         blocks[i][j] = resultCA[i][j] == 1;
